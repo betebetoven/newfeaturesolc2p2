@@ -164,7 +164,7 @@ del parser al escaner evitando crear variables globales
 
 
 %type<AbstractExpr*>   declaracion_var escapa declaracion_void llamada declaracion_vector;
-%type<QVector<AbstractExpr*>*> s lSentencia lasig lparam;
+%type<QVector<AbstractExpr*>*> s lSentencia lasig lparam ;
 %type<AbstractExpr*> sentencia asignacion_var aumento decremento asignacion_vector;
 %type<AbstractExpr*> expr tipo cond x retornovalor;
 %type<AbstractExpr*> bloque  ciclo_for ciclo_while ins_if;
@@ -335,6 +335,8 @@ lparam: lparam ',' x {
         $$ = vec;
     }
 ;
+
+
 
 
 

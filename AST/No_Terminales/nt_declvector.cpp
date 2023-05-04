@@ -44,13 +44,16 @@ Resultado* NT_DeclVector::Interpretar(Environment* ctx, EnvironmentFunc* ctx2, E
         } else {
             return nullptr;
         }
-
-
-
-
+    }
+    if(this->Expr.size()==0)
+    {
+        c3dCode += "H = H + 1;\n";
 
     }
+    c3dCode += "heap[(int)H] = -1;\n";
+    c3dCode += "H = H + 1;\n";
      std::cout << c3dCode;
+
 
     bool aux = 0;
     if (valueType == "Integer")
