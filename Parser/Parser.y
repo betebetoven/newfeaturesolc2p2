@@ -52,6 +52,7 @@
     #include "../AST/No_Terminales/nt_declvar.h"
     #include "../AST/No_Terminales/nt_declvector.h"
     #include "../AST/No_Terminales/nt_asigvar.h"
+    #include "../AST/No_Terminales/nt_assignvector.h"
     #include "../AST/No_Terminales/Expresiones/nt_suma.h"
     #include "../AST/No_Terminales/Expresiones/nt_multiplicacion.h"
     #include "../AST/No_Terminales/Expresiones/nt_resta.h"
@@ -164,7 +165,7 @@ del parser al escaner evitando crear variables globales
 
 %type<AbstractExpr*>   declaracion_var escapa declaracion_void llamada declaracion_vector;
 %type<QVector<AbstractExpr*>*> s lSentencia lasig lparam;
-%type<AbstractExpr*> sentencia asignacion_var aumento decremento;
+%type<AbstractExpr*> sentencia asignacion_var aumento decremento asignacion_vector;
 %type<AbstractExpr*> expr tipo cond x retornovalor;
 %type<AbstractExpr*> bloque  ciclo_for ciclo_while ins_if;
 %type<NT_Imprimir*> imprimir;
@@ -227,6 +228,7 @@ sentencia: declaracion_var {$$ = $1;}
     |declaracion_void {$$=$1;}
     |llamada {$$=$1;}
     |declaracion_vector {$$=$1;}
+    |asignacion_vector {$$=$1;}
     ;
 
 ciclo_for:FOR '(' declaracion_var z x z aumento ')' '{' lSentencia '}' {$$ = new Bloque(*$10,$3,$5,$7,true,nullptr);}
@@ -364,7 +366,10 @@ asignacion_var: ID '=' x {   NT_ID* id_avar = new NT_ID(QString::fromStdString($
                                 $$ = new NT_AsigVar(id_avar, $3,true);
                                 }
     ;
-
+asignacion_vector: ID '['lparam ']' '=' x {   NT_ID* id_avar = new NT_ID(QString::fromStdString($1));
+                                $$ = new NT_AsigVector(id_avar, *$3,$6);
+                                }
+    ;
 
 
 

@@ -6,10 +6,11 @@
 
 class NT_AsigVector: public AbstractExpr {
     AbstractExpr* ID;
+    AbstractExpr* Expr;
     QVector<AbstractExpr*> ExprList;
 
 public:
-    NT_AsigVector(AbstractExpr *id, const QVector<AbstractExpr*>& exprList);
+    NT_AsigVector(AbstractExpr *id, const QVector<AbstractExpr*>& exprList, AbstractExpr *expr);
 
     Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) override;
     QString Graficar() override;

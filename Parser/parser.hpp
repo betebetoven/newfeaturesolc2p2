@@ -64,6 +64,7 @@
     #include "../AST/No_Terminales/nt_declvar.h"
     #include "../AST/No_Terminales/nt_declvector.h"
     #include "../AST/No_Terminales/nt_asigvar.h"
+    #include "../AST/No_Terminales/nt_assignvector.h"
     #include "../AST/No_Terminales/Expresiones/nt_suma.h"
     #include "../AST/No_Terminales/Expresiones/nt_multiplicacion.h"
     #include "../AST/No_Terminales/Expresiones/nt_resta.h"
@@ -122,7 +123,7 @@
     */
 
 
-#line 126 "parser.hpp"
+#line 127 "parser.hpp"
 
 
 # include <cstdlib> // std::abort
@@ -251,7 +252,7 @@
 #endif
 
 namespace yy {
-#line 255 "parser.hpp"
+#line 256 "parser.hpp"
 
 
 
@@ -456,6 +457,7 @@ namespace yy {
       // declaracion_var
       // declaracion_vector
       // asignacion_var
+      // asignacion_vector
       // x
       // cond
       // expr
@@ -695,11 +697,12 @@ namespace yy {
         S_declaracion_var = 88,                  // declaracion_var
         S_declaracion_vector = 89,               // declaracion_vector
         S_asignacion_var = 90,                   // asignacion_var
-        S_x = 91,                                // x
-        S_cond = 92,                             // cond
-        S_oprel = 93,                            // oprel
-        S_expr = 94,                             // expr
-        S_tipo = 95                              // tipo
+        S_asignacion_vector = 91,                // asignacion_vector
+        S_x = 92,                                // x
+        S_cond = 93,                             // cond
+        S_oprel = 94,                            // oprel
+        S_expr = 95,                             // expr
+        S_tipo = 96                              // tipo
       };
     };
 
@@ -750,6 +753,7 @@ namespace yy {
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_declaracion_vector: // declaracion_vector
       case symbol_kind::S_asignacion_var: // asignacion_var
+      case symbol_kind::S_asignacion_vector: // asignacion_vector
       case symbol_kind::S_x: // x
       case symbol_kind::S_cond: // cond
       case symbol_kind::S_expr: // expr
@@ -895,6 +899,7 @@ switch (yykind)
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_declaracion_vector: // declaracion_vector
       case symbol_kind::S_asignacion_var: // asignacion_var
+      case symbol_kind::S_asignacion_vector: // asignacion_vector
       case symbol_kind::S_x: // x
       case symbol_kind::S_cond: // cond
       case symbol_kind::S_expr: // expr
@@ -2305,9 +2310,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 411,     ///< Last index in yytable_.
-      yynnts_ = 26,  ///< Number of nonterminal symbols.
-      yyfinal_ = 63 ///< Termination state number.
+      yylast_ = 440,     ///< Last index in yytable_.
+      yynnts_ = 27,  ///< Number of nonterminal symbols.
+      yyfinal_ = 65 ///< Termination state number.
     };
 
 
@@ -2395,6 +2400,7 @@ switch (yykind)
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_declaracion_vector: // declaracion_vector
       case symbol_kind::S_asignacion_var: // asignacion_var
+      case symbol_kind::S_asignacion_vector: // asignacion_vector
       case symbol_kind::S_x: // x
       case symbol_kind::S_cond: // cond
       case symbol_kind::S_expr: // expr
@@ -2468,6 +2474,7 @@ switch (yykind)
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_declaracion_vector: // declaracion_vector
       case symbol_kind::S_asignacion_var: // asignacion_var
+      case symbol_kind::S_asignacion_vector: // asignacion_vector
       case symbol_kind::S_x: // x
       case symbol_kind::S_cond: // cond
       case symbol_kind::S_expr: // expr
@@ -2560,7 +2567,7 @@ switch (yykind)
   }
 
 } // yy
-#line 2564 "parser.hpp"
+#line 2571 "parser.hpp"
 
 
 
