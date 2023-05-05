@@ -30,6 +30,37 @@ QString Clase3::Interfaz::Analaizar(std::string entrada) {
     << "goto "<< L1.toStdString()<<";"<< std::endl
     << L2.toStdString()<<":"<< std::endl
     << "return;}"<< std::endl;
+
+
+
+    QString ct0 = "t"+QString::number(MiniResultado::x++);
+    QString ct1 = "t"+QString::number(MiniResultado::x++);
+    QString ct2 = "t"+QString::number(MiniResultado::x++);
+    QString cL1 = "L"+QString::number(MiniResultado::L++);
+    QString cL2 = "L"+QString::number(MiniResultado::L++);
+    std::cout
+    << "void copiar () {"<< std::endl
+    <<ct0.toStdString()<<"=H;"<<std::endl
+    << ct1.toStdString()<<" = stack[(int)P];"<< std::endl
+    << ct2.toStdString()<<" = heap[(int)"<<ct1.toStdString()<<"];"<< std::endl
+    << cL1.toStdString()<<":"<< std::endl
+    << "if ("<<ct2.toStdString()<<" ==-1) goto "<< cL2.toStdString()<<";"<< std::endl
+    <<"heap[(int)H]="<<ct2.toStdString()<<";"<<std::endl
+    <<"H=H+1;"<<std::endl
+    //<< "printf(\"%c\", (int)"<<ct2.toStdString()<<");"<< std::endl
+    << ct1.toStdString()<<" = "<<ct1.toStdString()<<" + 1;"<< std::endl
+    << ct2.toStdString()<<" = heap[(int)"<<ct1.toStdString()<<"];"<< std::endl
+    << "goto "<< cL1.toStdString()<<";"<< std::endl
+    << cL2.toStdString()<<":"<< std::endl
+    <<"stack[(int)P]="<<ct0.toStdString()<<";"<<std::endl
+    << "return;}"<< std::endl;
+
+
+
+
+
+
+
     QString contador = "t"+QString::number(MiniResultado::x++);
     QString tecero = "t"+QString::number(MiniResultado::x++);
      QString teuno = "t"+QString::number(MiniResultado::x++);
