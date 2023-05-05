@@ -57,7 +57,75 @@ Resultado *NT_AsigVector::Interpretar(Environment *ctx,EnvironmentFunc* ctx2, En
     std::cout<<"heap[(int)"<<indicesaltoheap.toStdString()<<"]= "<<expR->getValor().toFloat()<<";"<<std::endl;
     else
     std::cout<<"heap[(int)"<<indicesaltoheap.toStdString()<<"]= "<<expR->miniResultado.temporales[0].toStdString()<<";"<<std::endl;
-    }
+    }else if(this->ExprList.size() >1)
+        {
+
+            int placer = ctx->getvariableplacer(varName.toStdString());
+            QString tposicion = "t"+QString::number(MiniResultado::x++);
+            QString tstack = "t"+QString::number(MiniResultado::x++);
+            QString tindex = "t"+QString::number(MiniResultado::x++);
+            QString theap = "t"+QString::number(MiniResultado::x++);
+            QString temporaldeE= "";
+            int total = ctx3->linearSize(varName.toStdString());
+            QString tcontador = "t"+QString::number(MiniResultado::x++);
+            std::cout<<tcontador.toStdString()<<" = 0;"<<std::endl;
+            for (int var = 0; var < this->ExprList.size()-1; ++var) {
+                Resultado* x = this->ExprList[var]->Interpretar(ctx,ctx2,ctx3);
+                QString temporalderesta="t"+QString::number(MiniResultado::x++);
+                QString temporaldemulti="t"+QString::number(MiniResultado::x++);
+                total = total / ctx3->getDimensionFrom(varName.toStdString(),var);
+
+                //std::cout<<temporalderesta.toStdString()<<" = "<<x->getValor().toInt()<<" - 1;"<<std::endl;
+                std::cout<<temporalderesta.toStdString()<<" = "<<x->getValor().toInt()<<";"<<std::endl;
+                std::cout<<temporaldemulti.toStdString()<<" = "<<temporalderesta.toStdString()<<" * "<<total<<";"<<std::endl;
+                std::cout<<tcontador.toStdString()<<" = "<<tcontador.toStdString()<<" + "<<temporaldemulti.toStdString()<<";"<<std::endl;
+
+                //temporaldeE = tcontador;
+            }
+            Resultado* x = this->ExprList[this->ExprList.size()-1]->Interpretar(ctx,ctx2,ctx3);
+            temporaldeE="t"+QString::number(MiniResultado::x++);
+            std::cout<<temporaldeE.toStdString()<<" = "<<tcontador.toStdString()<<" + "<<x->getValor().toInt()<<";"<<std::endl;
+            //std::cout<<temporaldeE.toStdString()<<" = "<<temporaldeE.toStdString()<<" - 1;"<<std::endl;
+
+
+
+            //else
+            //t = p+0 t = stack[t]
+            std::cout<<tposicion.toStdString()<<" =P + "<<placer<<";"<<std::endl;
+            std::cout<<tstack.toStdString()<<" = stack[(int)"<<tposicion.toStdString()<<"];"<<std::endl;
+
+            std::cout<<tindex.toStdString()<<" = "<<tstack.toStdString()<<" + "<<temporaldeE.toStdString()<<";"<<std::endl;
+            //std::cout<<theap.toStdString()<<" = heap[(int)"<<tindex.toStdString()<<"];"<<std::endl;
+            if(expR->miniResultado.temporales.size()==0)
+            std::cout<<"heap[(int)"<<tindex.toStdString()<<"]= "<<expR->getValor().toFloat()<<";"<<std::endl;
+            else
+            std::cout<<"heap[(int)"<<tindex.toStdString()<<"]= "<<expR->miniResultado.temporales[0].toStdString()<<";"<<std::endl;
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
     else
