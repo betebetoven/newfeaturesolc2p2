@@ -51,6 +51,7 @@
     #include "../AST/No_Terminales/nt_bloque.h"
     #include "../AST/No_Terminales/nt_declvar.h"
     #include "../AST/No_Terminales/nt_declvector.h"
+    #include "../AST/No_Terminales/nt_declmatriz.h"
     #include "../AST/No_Terminales/nt_asigvar.h"
     #include "../AST/No_Terminales/nt_assignvector.h"
     #include "../AST/No_Terminales/Expresiones/nt_suma.h"
@@ -163,8 +164,8 @@ del parser al escaner evitando crear variables globales
 %parse-param {void *scanner} {yy::location& loc} { class Clase3::Interfaz & intr }
 
 
-%type<AbstractExpr*>   declaracion_var escapa declaracion_void llamada declaracion_vector;
-%type<QVector<AbstractExpr*>*> s lSentencia lasig lparam ;
+%type<AbstractExpr*>   declaracion_var escapa declaracion_void llamada declaracion_vector declaracion_matriz;
+%type<QVector<AbstractExpr*>*> s lSentencia lasig lparam lparamatriz;
 %type<AbstractExpr*> sentencia asignacion_var aumento decremento asignacion_vector;
 %type<AbstractExpr*> expr tipo cond x retornovalor;
 %type<AbstractExpr*> bloque  ciclo_for ciclo_while ins_if;
@@ -229,6 +230,7 @@ sentencia: declaracion_var {$$ = $1;}
     |llamada {$$=$1;}
     |declaracion_vector {$$=$1;}
     |asignacion_vector {$$=$1;}
+    |declaracion_matriz {$$=$1;}
     ;
 
 ciclo_for:FOR '(' declaracion_var z x z aumento ')' '{' lSentencia '}' {$$ = new Bloque(*$10,$3,$5,$7,true,nullptr);}
@@ -336,6 +338,17 @@ lparam: lparam ',' x {
     }
 ;
 
+lparamatriz: lparamatriz '[' x ']' {
+                           $$ = $1;
+                            $$->append($3);
+                        }   
+    |'[' x ']' {  
+        QVector<AbstractExpr*>* vec = new QVector<AbstractExpr*>();
+        vec->append($2);
+        $$ = vec;
+    }
+;
+
 
 
 
@@ -354,6 +367,10 @@ declaracion_vector: VECTOR MENOR tipo MAYOR ID  {   NT_ID* id = new NT_ID(QStrin
                                 NT_ID* id = new NT_ID(QString::fromStdString($5));
                                 $$ = new NT_DeclVector($3, id, *$8 );  }
     ;
+declaracion_matriz: tipo  ID  lparamatriz  {    
+                                NT_ID* id = new NT_ID(QString::fromStdString($2));
+                                $$ = new NT_DeclMatriz($1, id, *$3 );  }
+    ;
 
 
 
@@ -368,8 +385,8 @@ asignacion_var: ID '=' x {   NT_ID* id_avar = new NT_ID(QString::fromStdString($
                                 $$ = new NT_AsigVar(id_avar, $3,true);
                                 }
     ;
-asignacion_vector: ID '['lparam ']' '=' x {   NT_ID* id_avar = new NT_ID(QString::fromStdString($1));
-                                $$ = new NT_AsigVector(id_avar, *$3,$6);
+asignacion_vector: ID lparamatriz '=' x {   NT_ID* id_avar = new NT_ID(QString::fromStdString($1));
+                                $$ = new NT_AsigVector(id_avar,*$2,$4);
                                 }
     ;
 
@@ -429,7 +446,7 @@ expr: expr SUMA expr   { $$ = new NT_Suma($1, $3);  }
     | MENOS expr %prec NEG  { $$ = new NT_Negacion($2);  }
     | NUMERO { $$ = new T_Numero( QString::fromStdString($1)); }
     | ID { $$ = new T_ID( QString::fromStdString($1)); }
-    | ID '[' lparam ']'   { $$ = new T_ID( QString::fromStdString($1),*$3); }
+    | ID lparamatriz   { $$ = new T_ID( QString::fromStdString($1),*$2); }
     |llamada {$$=$1;}
     | STRING { $$ = new T_String( QString::fromStdString($1));  }
     | FLOAT { $$ = new T_Float( QString::fromStdString($1));  }

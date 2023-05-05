@@ -63,6 +63,7 @@
     #include "../AST/No_Terminales/nt_bloque.h"
     #include "../AST/No_Terminales/nt_declvar.h"
     #include "../AST/No_Terminales/nt_declvector.h"
+    #include "../AST/No_Terminales/nt_declmatriz.h"
     #include "../AST/No_Terminales/nt_asigvar.h"
     #include "../AST/No_Terminales/nt_assignvector.h"
     #include "../AST/No_Terminales/Expresiones/nt_suma.h"
@@ -123,7 +124,7 @@
     */
 
 
-#line 127 "parser.hpp"
+#line 128 "parser.hpp"
 
 
 # include <cstdlib> // std::abort
@@ -252,7 +253,7 @@
 #endif
 
 namespace yy {
-#line 256 "parser.hpp"
+#line 257 "parser.hpp"
 
 
 
@@ -456,6 +457,7 @@ namespace yy {
       // declaracion_void
       // declaracion_var
       // declaracion_vector
+      // declaracion_matriz
       // asignacion_var
       // asignacion_vector
       // x
@@ -471,6 +473,7 @@ namespace yy {
       // lSentencia
       // lasig
       // lparam
+      // lparamatriz
       char dummy3[sizeof (QVector<AbstractExpr*>*)];
 
       // NUMERO
@@ -694,15 +697,17 @@ namespace yy {
         S_declaracion_void = 85,                 // declaracion_void
         S_lasig = 86,                            // lasig
         S_lparam = 87,                           // lparam
-        S_declaracion_var = 88,                  // declaracion_var
-        S_declaracion_vector = 89,               // declaracion_vector
-        S_asignacion_var = 90,                   // asignacion_var
-        S_asignacion_vector = 91,                // asignacion_vector
-        S_x = 92,                                // x
-        S_cond = 93,                             // cond
-        S_oprel = 94,                            // oprel
-        S_expr = 95,                             // expr
-        S_tipo = 96                              // tipo
+        S_lparamatriz = 88,                      // lparamatriz
+        S_declaracion_var = 89,                  // declaracion_var
+        S_declaracion_vector = 90,               // declaracion_vector
+        S_declaracion_matriz = 91,               // declaracion_matriz
+        S_asignacion_var = 92,                   // asignacion_var
+        S_asignacion_vector = 93,                // asignacion_vector
+        S_x = 94,                                // x
+        S_cond = 95,                             // cond
+        S_oprel = 96,                            // oprel
+        S_expr = 97,                             // expr
+        S_tipo = 98                              // tipo
       };
     };
 
@@ -752,6 +757,7 @@ namespace yy {
       case symbol_kind::S_declaracion_void: // declaracion_void
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_declaracion_vector: // declaracion_vector
+      case symbol_kind::S_declaracion_matriz: // declaracion_matriz
       case symbol_kind::S_asignacion_var: // asignacion_var
       case symbol_kind::S_asignacion_vector: // asignacion_vector
       case symbol_kind::S_x: // x
@@ -769,6 +775,7 @@ namespace yy {
       case symbol_kind::S_lSentencia: // lSentencia
       case symbol_kind::S_lasig: // lasig
       case symbol_kind::S_lparam: // lparam
+      case symbol_kind::S_lparamatriz: // lparamatriz
         value.move< QVector<AbstractExpr*>* > (std::move (that.value));
         break;
 
@@ -898,6 +905,7 @@ switch (yykind)
       case symbol_kind::S_declaracion_void: // declaracion_void
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_declaracion_vector: // declaracion_vector
+      case symbol_kind::S_declaracion_matriz: // declaracion_matriz
       case symbol_kind::S_asignacion_var: // asignacion_var
       case symbol_kind::S_asignacion_vector: // asignacion_vector
       case symbol_kind::S_x: // x
@@ -915,6 +923,7 @@ switch (yykind)
       case symbol_kind::S_lSentencia: // lSentencia
       case symbol_kind::S_lasig: // lasig
       case symbol_kind::S_lparam: // lparam
+      case symbol_kind::S_lparamatriz: // lparamatriz
         value.template destroy< QVector<AbstractExpr*>* > ();
         break;
 
@@ -2310,9 +2319,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 440,     ///< Last index in yytable_.
-      yynnts_ = 27,  ///< Number of nonterminal symbols.
-      yyfinal_ = 65 ///< Termination state number.
+      yylast_ = 446,     ///< Last index in yytable_.
+      yynnts_ = 29,  ///< Number of nonterminal symbols.
+      yyfinal_ = 67 ///< Termination state number.
     };
 
 
@@ -2399,6 +2408,7 @@ switch (yykind)
       case symbol_kind::S_declaracion_void: // declaracion_void
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_declaracion_vector: // declaracion_vector
+      case symbol_kind::S_declaracion_matriz: // declaracion_matriz
       case symbol_kind::S_asignacion_var: // asignacion_var
       case symbol_kind::S_asignacion_vector: // asignacion_vector
       case symbol_kind::S_x: // x
@@ -2416,6 +2426,7 @@ switch (yykind)
       case symbol_kind::S_lSentencia: // lSentencia
       case symbol_kind::S_lasig: // lasig
       case symbol_kind::S_lparam: // lparam
+      case symbol_kind::S_lparamatriz: // lparamatriz
         value.copy< QVector<AbstractExpr*>* > (YY_MOVE (that.value));
         break;
 
@@ -2473,6 +2484,7 @@ switch (yykind)
       case symbol_kind::S_declaracion_void: // declaracion_void
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_declaracion_vector: // declaracion_vector
+      case symbol_kind::S_declaracion_matriz: // declaracion_matriz
       case symbol_kind::S_asignacion_var: // asignacion_var
       case symbol_kind::S_asignacion_vector: // asignacion_vector
       case symbol_kind::S_x: // x
@@ -2490,6 +2502,7 @@ switch (yykind)
       case symbol_kind::S_lSentencia: // lSentencia
       case symbol_kind::S_lasig: // lasig
       case symbol_kind::S_lparam: // lparam
+      case symbol_kind::S_lparamatriz: // lparamatriz
         value.move< QVector<AbstractExpr*>* > (YY_MOVE (s.value));
         break;
 
@@ -2567,7 +2580,7 @@ switch (yykind)
   }
 
 } // yy
-#line 2571 "parser.hpp"
+#line 2584 "parser.hpp"
 
 
 
