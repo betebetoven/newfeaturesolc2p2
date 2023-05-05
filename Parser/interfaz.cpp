@@ -41,7 +41,8 @@ QString Clase3::Interfaz::Analaizar(std::string entrada) {
             <<teuno.toStdString()<<" = heap[(int)"<<tecero.toStdString()<<"];"<<std::endl
             <<Lcero.toStdString()<<":"<<std::endl
             <<"if ("<<teuno.toStdString()<<"==-1) goto "<<Luno.toStdString()<<";"<<std::endl
-            <<contador.toStdString()<<" = "<<contador.toStdString()<<" +"<<teuno.toStdString()<<";"<<std::endl
+            //<<contador.toStdString()<<" = "<<contador.toStdString()<<" +"<<teuno.toStdString()<<";"<<std::endl
+            <<contador.toStdString()<<" = "<<contador.toStdString()<<" +1;"<<std::endl
             <<tecero.toStdString()<<" = (int)"<<tecero.toStdString()<<" + 1;"<<std::endl
             <<teuno.toStdString()<<" = heap[(int)"<<tecero.toStdString()<<"];"<<std::endl
             <<"goto "<< Lcero.toStdString()<<";"<<std::endl

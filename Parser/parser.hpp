@@ -73,7 +73,7 @@
     #include "../AST/No_Terminales/Expresiones/nt_exponencial.h"
     #include "../AST/No_Terminales/Expresiones/nt_modulo.h"
     #include "../AST/No_Terminales/nt_declfunc.h"
-
+    #include "../AST/No_Terminales/nt_size.h"
     #include "../AST/No_Terminales/Expresiones/nt_negacion.h"
     #include "../AST/No_Terminales/Expresiones/nt_id.h"
     #include "../AST/No_Terminales/nt_tipo.h"
@@ -2319,7 +2319,7 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 446,     ///< Last index in yytable_.
+      yylast_ = 464,     ///< Last index in yytable_.
       yynnts_ = 29,  ///< Number of nonterminal symbols.
       yyfinal_ = 67 ///< Termination state number.
     };

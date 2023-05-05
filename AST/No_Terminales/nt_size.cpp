@@ -16,14 +16,14 @@ Resultado* NT_Size::Interpretar(Environment *ctx, EnvironmentFunc* ctx2, Environ
             <<"size();"<<std::endl
             <<"P = P - "<<ctx->placer<<";"<<std::endl
             <<temporalretorno.toStdString()<<"= P +"<<ctx->placer<<";"<<std::endl
-            <<temporalretorno.toStdString()<<"= stack[(int)"<<temporalretorno.toStdString()<<";"<<std::endl;
+            <<temporalretorno.toStdString()<<"= stack[(int)"<<temporalretorno.toStdString()<<"];"<<std::endl;
 
     Resultado* nuevo = new Resultado(0);
     nuevo->miniResultado.temporales.push_front(temporalretorno);
 
     // ... The rest of the code remains the same
 
-    return nullptr;
+    return nuevo;
 }
 
 QString NT_Size::Graficar() {

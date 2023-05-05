@@ -61,7 +61,7 @@
     #include "../AST/No_Terminales/Expresiones/nt_exponencial.h"
     #include "../AST/No_Terminales/Expresiones/nt_modulo.h"
     #include "../AST/No_Terminales/nt_declfunc.h"
-
+    #include "../AST/No_Terminales/nt_size.h"
     #include "../AST/No_Terminales/Expresiones/nt_negacion.h"
     #include "../AST/No_Terminales/Expresiones/nt_id.h"
     #include "../AST/No_Terminales/nt_tipo.h"
@@ -448,6 +448,7 @@ expr: expr SUMA expr   { $$ = new NT_Suma($1, $3);  }
     | ID { $$ = new T_ID( QString::fromStdString($1)); }
     | ID lparamatriz   { $$ = new T_ID( QString::fromStdString($1),*$2); }
     |llamada {$$=$1;}
+    | ID '.' SIZE '(' ')' { $$ = new NT_Size(new T_ID( QString::fromStdString($1))); }
     | STRING { $$ = new T_String( QString::fromStdString($1));  }
     | FLOAT { $$ = new T_Float( QString::fromStdString($1));  }
     | TRUE { $$ = new T_Boolean( QString::fromStdString("true"));  }
