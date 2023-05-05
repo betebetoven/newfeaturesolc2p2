@@ -70,6 +70,7 @@ set(PROJECT_SOURCES
         Interprete/Contexto/environmentvect.h Interprete/Contexto/environmentvect.cpp
         Interprete/Contexto/miniresultado.h Interprete/Contexto/miniresultado.cpp
         AST/No_Terminales/nt_declmatriz.h AST/No_Terminales/nt_declmatriz.cpp
+        AST/No_Terminales/nt_size.h AST/No_Terminales/nt_size.cpp
 
 
 

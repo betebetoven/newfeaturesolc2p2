@@ -30,6 +30,24 @@ QString Clase3::Interfaz::Analaizar(std::string entrada) {
     << "goto "<< L1.toStdString()<<";"<< std::endl
     << L2.toStdString()<<":"<< std::endl
     << "return;}"<< std::endl;
+    QString contador = "t"+QString::number(MiniResultado::x++);
+    QString tecero = "t"+QString::number(MiniResultado::x++);
+     QString teuno = "t"+QString::number(MiniResultado::x++);
+     QString Lcero = "L"+QString::number(MiniResultado::L++);
+     QString Luno = "L"+QString::number(MiniResultado::L++);
+    std::cout<<"void size() {\n"<<std::endl
+            <<contador.toStdString()<<" = 0;"<<std::endl
+            <<tecero.toStdString()<<" = stack[(int)P];"<<std::endl
+            <<teuno.toStdString()<<" = heap[(int)"<<tecero.toStdString()<<"];"<<std::endl
+            <<Lcero.toStdString()<<":"<<std::endl
+            <<"if ("<<teuno.toStdString()<<"==-1) goto "<<Luno.toStdString()<<";"<<std::endl
+            <<contador.toStdString()<<" = "<<contador.toStdString()<<" +"<<teuno.toStdString()<<";"<<std::endl
+            <<tecero.toStdString()<<" = (int)"<<tecero.toStdString()<<" + 1;"<<std::endl
+            <<teuno.toStdString()<<" = heap[(int)"<<tecero.toStdString()<<"];"<<std::endl
+            <<"goto "<< Lcero.toStdString()<<";"<<std::endl
+            <<Luno.toStdString()<<":"<<std::endl
+            <<"stack[(int)P]="<<contador.toStdString()<<";"<<std::endl
+            <<"return;}"<<std::endl;
 
 
     Environment *env = new Environment(nullptr);
