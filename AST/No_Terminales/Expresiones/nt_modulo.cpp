@@ -20,22 +20,22 @@ Resultado *NT_Modulo::Interpretar(Environment *ctx,EnvironmentFunc *ctx2, Enviro
     if (izqTipo == "Integer" && derTipo == "Integer") {
         int mod = izqValor.toInt() % derValor.toInt();
         if(izqR->miniResultado.temporales.size()==0 && derR->miniResultado.temporales.size()==0 )
-        std::cout<<"t"<<MiniResultado::x<<"= "<<izqValor.toInt() <<" % "<<derValor.toInt()<<";"<<std::endl;
+        std::cout<<"t"<<MiniResultado::x<<"= (int)"<<izqValor.toInt() <<" % (int)"<<derValor.toInt()<<";"<<std::endl;
         else if(izqR->miniResultado.temporales.size()==0 && derR->miniResultado.temporales.size()!=0 )
         {
             QString temp = derR->miniResultado.temporales[0];
-            std::cout<<"t"<<MiniResultado::x<<"= "<<izqValor.toInt() <<" % "<<temp.toStdString()<<";"<<std::endl;
+            std::cout<<"t"<<MiniResultado::x<<"=(int)"<<izqValor.toInt() <<" % (int)"<<temp.toStdString()<<";"<<std::endl;
         }
         else if(izqR->miniResultado.temporales.size()!=0 && derR->miniResultado.temporales.size()==0 )
         {
             QString temp = izqR->miniResultado.temporales[0];
-            std::cout<<"t"<<MiniResultado::x<<"= "<<temp.toStdString()<<" % "<<derValor.toInt()<<";"<<std::endl;
+            std::cout<<"t"<<MiniResultado::x<<"=(int)"<<temp.toStdString()<<" % (int)"<<derValor.toInt()<<";"<<std::endl;
         }
         else if(izqR->miniResultado.temporales.size()!=0 && derR->miniResultado.temporales.size()!=0 )
         {
             QString temp = izqR->miniResultado.temporales[0];
             QString temp2 = derR->miniResultado.temporales[0];
-            std::cout<<"t"<<MiniResultado::x<<"= "<<temp.toStdString()<<" % "<<temp2.toStdString()<<";"<<std::endl;
+            std::cout<<"t"<<MiniResultado::x<<"=(int) "<<temp.toStdString()<<" % (int)"<<temp2.toStdString()<<";"<<std::endl;
         }
 
 

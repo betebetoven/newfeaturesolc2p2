@@ -27,7 +27,7 @@ Resultado *NT_Imprimir::Interpretar(Environment *ctx,EnvironmentFunc* ctx2, Envi
         else if(r->getTipo()=="Float")
             std::cout<<"printf(\"%f\", "<<temporal.toStdString()<<");"<<std::endl;
         else if(r->getTipo()=="Boolean")
-            std::cout<<"printf(\"%d\", "<<temporal.toStdString()<<");"<<std::endl;
+            std::cout<<"printf(\"%d\", (int)"<<temporal.toStdString()<<");"<<std::endl;
     }
     else
     {
@@ -37,7 +37,7 @@ Resultado *NT_Imprimir::Interpretar(Environment *ctx,EnvironmentFunc* ctx2, Envi
         else if(r->getTipo()=="Float")
             std::cout<<"printf(\"%f\", "<<temporal<<");"<<std::endl;
         else if(r->getTipo()=="Boolean")
-            std::cout<<"printf(\"%d\", "<<temporal<<");"<<std::endl;
+            std::cout<<"printf(\"%d\", (int)"<<temporal<<");"<<std::endl;
     }
 
 

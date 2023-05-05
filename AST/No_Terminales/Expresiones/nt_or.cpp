@@ -47,11 +47,12 @@ Resultado *NT_Or::Interpretar(Environment *ctx,EnvironmentFunc* ctx2, Environmen
         resultado->miniResultado.EV =ev+ evd;
         resultado->miniResultado.EF = efd;
     }
-    else {
-        // Unsupported operand types
-        resultado = nullptr;
-    }
 
+    resultado->miniResultado.EV =ev + evd;
+    resultado->miniResultado.EF = efd;
+    for (int var = 0; var < resultado->miniResultado.EV.size(); ++var) {
+        std::cout<<"// si sube la etiqueta "<<resultado->miniResultado.EV[var].toStdString()<<std::endl;
+    }
     return resultado;
 }
 

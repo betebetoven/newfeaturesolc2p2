@@ -139,7 +139,11 @@ Resultado* Bloque::Interpretar(Environment* env,EnvironmentFunc* ctx2, Environme
         {
             ev=exprResult->miniResultado.EV;
            ef=exprResult->miniResultado.EF;
-           std::cout<<ev[0].toStdString()<<":"<<std::endl;
+           for (int var = 0; var < ev.size(); ++var) {
+           std::cout<<ev[var].toStdString()<<":"<<std::endl;
+           }
+
+           //std::cout<<ev[0].toStdString()<<":"<<std::endl;
 
         }
         else

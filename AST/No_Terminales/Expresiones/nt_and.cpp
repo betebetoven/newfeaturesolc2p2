@@ -29,31 +29,28 @@ Resultado *NT_And::Interpretar(Environment *ctx,EnvironmentFunc *ctx2, Environme
     if (izqTipo == "Boolean" && derTipo == "Boolean") {
         bool andResult = izqValor.toBool() && derValor.toBool();
         resultado = new Resultado(andResult);
-        resultado->miniResultado.EV = evd;
-        resultado->miniResultado.EF = ef+efd;
+
     }
     else     if (izqTipo == "Boolean" && derTipo == "Integer") {
         bool orResult = izqValor.toBool() && derValor.toInt();
         resultado = new Resultado(orResult);
-        resultado->miniResultado.EV =ev+ evd;
-        resultado->miniResultado.EF = efd;
+        //resultado->miniResultado.EV =ev+ evd;
+        //resultado->miniResultado.EF = efd;
     }
     else     if (izqTipo == "Integer" && derTipo == "Boolean") {
         bool orResult = izqValor.toInt() && derValor.toBool();
         resultado = new Resultado(orResult);
-        resultado->miniResultado.EV =ev+ evd;
-        resultado->miniResultado.EF = efd;
+        //resultado->miniResultado.EV =ev+ evd;
+        //resultado->miniResultado.EF = efd;
     }
     else     if (izqTipo == "Integer" && derTipo == "Integer") {
         bool orResult = izqValor.toInt() && derValor.toInt();
         resultado = new Resultado(orResult);
-        resultado->miniResultado.EV =ev+ evd;
-        resultado->miniResultado.EF = efd;
+        //resultado->miniResultado.EV =ev+ evd;
+        //resultado->miniResultado.EF = efd;
     }
-    else {
-        // Unsupported operand types
-        resultado = nullptr;
-    }
+    resultado->miniResultado.EV = evd;
+    resultado->miniResultado.EF = ef+efd;
 
     return resultado;
 }
