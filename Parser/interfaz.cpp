@@ -50,6 +50,35 @@ QString Clase3::Interfaz::Analaizar(std::string entrada) {
             <<"stack[(int)P]="<<contador.toStdString()<<";"<<std::endl
             <<"return;}"<<std::endl;
 
+    QString mcontador = "t"+QString::number(MiniResultado::x++);
+    QString mcontadorsuma = "t"+QString::number(MiniResultado::x++);
+    QString mtecero = "t"+QString::number(MiniResultado::x++);
+     QString mteuno = "t"+QString::number(MiniResultado::x++);
+     QString mLcero = "L"+QString::number(MiniResultado::L++);
+     QString mLuno = "L"+QString::number(MiniResultado::L++);
+    std::cout<<"void mean() {\n"<<std::endl
+            <<mcontador.toStdString()<<" = 0;"<<std::endl
+              <<mcontadorsuma.toStdString()<<" = 0;"<<std::endl
+            <<mtecero.toStdString()<<" = stack[(int)P];"<<std::endl
+            <<mteuno.toStdString()<<" = heap[(int)"<<mtecero.toStdString()<<"];"<<std::endl
+            <<mLcero.toStdString()<<":"<<std::endl
+            <<"if ("<<mteuno.toStdString()<<"==-1) goto "<<mLuno.toStdString()<<";"<<std::endl
+            <<mcontadorsuma.toStdString()<<" = "<<mcontadorsuma.toStdString()<<" +"<<mteuno.toStdString()<<";"<<std::endl
+            <<mcontador.toStdString()<<" = "<<mcontador.toStdString()<<" +1;"<<std::endl
+            <<mtecero.toStdString()<<" = (int)"<<mtecero.toStdString()<<" + 1;"<<std::endl
+            <<mteuno.toStdString()<<" = heap[(int)"<<mtecero.toStdString()<<"];"<<std::endl
+            <<"goto "<< mLcero.toStdString()<<";"<<std::endl
+            <<mLuno.toStdString()<<":"<<std::endl
+           <<mcontadorsuma.toStdString()<<" = "<<mcontadorsuma.toStdString()<<" / "<<mcontador.toStdString()<<";"<<std::endl
+            <<"stack[(int)P]="<<mcontadorsuma.toStdString()<<";"<<std::endl
+            <<"return;}"<<std::endl;
+
+
+
+
+
+
+
 
     Environment *env = new Environment(nullptr);
     EnvironmentFunc *env2 = new EnvironmentFunc(nullptr);
