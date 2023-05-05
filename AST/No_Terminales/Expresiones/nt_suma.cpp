@@ -137,15 +137,38 @@ Resultado *NT_Suma::Interpretar(Environment *ctx,EnvironmentFunc *ctx2, Environm
                     std::cout<<"heap[(int)H]="<<ascii_value<<";"<<std::endl
                     <<"H=H+1;"<<std::endl;
                 }
+            std::cout<<"heap[(int)H]=-1;"<<std::endl
+            <<"H=H+1;"<<std::endl;
+            resultado->miniResultado.temporales.push_front(temporalretorno);
+        }else if ( izqR->miniResultado.temporales.size()==0 && derTipo == "String")
+        {
+
+            Resultado* r = derR;
+            QString inicio = "t"+QString::number(MiniResultado::x++);
+            std::cout<<inicio.toStdString()<<"=H;"<<std::endl;
+            std::string input_str = izqValor.toString().toStdString();
+            for (size_t i = 0; i < input_str.length(); ++i) {
+                    char current_char = input_str[i];
+                    int ascii_value = static_cast<int>(current_char);
+                    std::cout<<"heap[(int)H]="<<ascii_value<<";"<<std::endl
+                    <<"H=H+1;"<<std::endl;
+                }
 
 
-
-
+            QString temporal = "t"+QString::number(MiniResultado::x++);
+            QString temporalretorno = "t"+QString::number(MiniResultado::x++);
+            std::cout<<temporal.toStdString()<<"= P + "<<ctx->placer<<";"<<std::endl
+                    <<"stack[(int)"<<temporal.toStdString()<<"] = "<<r->miniResultado.temporales[0].toStdString()<<";"<<std::endl
+                    <<"P = P + "<<ctx->placer<<";"<<std::endl
+                    <<"copiar();"<<std::endl
+                    <<"P = P - "<<ctx->placer<<";"<<std::endl
+                    <<temporalretorno.toStdString()<<"= P +"<<ctx->placer<<";"<<std::endl
+                    <<temporalretorno.toStdString()<<"= stack[(int)"<<temporalretorno.toStdString()<<"];"<<std::endl;
 
 
             std::cout<<"heap[(int)H]=-1;"<<std::endl
             <<"H=H+1;"<<std::endl;
-            resultado->miniResultado.temporales.push_front(temporalretorno);
+            resultado->miniResultado.temporales.push_front(inicio);
         }
 
 
