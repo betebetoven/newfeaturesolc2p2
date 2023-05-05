@@ -450,6 +450,7 @@ expr: expr SUMA expr   { $$ = new NT_Suma($1, $3);  }
     |llamada {$$=$1;}
     | ID '.' SIZE '(' ')' { $$ = new NT_Size(new T_ID( QString::fromStdString($1)),1); }
     | MEAN '(' ID ')' { $$ = new NT_Size(new T_ID( QString::fromStdString($3)),2); }
+    | MEDIAN '(' ID ')' { $$ = new NT_Size(new T_ID( QString::fromStdString($3)),3); }
     | STRING { $$ = new T_String( QString::fromStdString($1));  }
     | FLOAT { $$ = new T_Float( QString::fromStdString($1));  }
     | TRUE { $$ = new T_Boolean( QString::fromStdString("true"));  }

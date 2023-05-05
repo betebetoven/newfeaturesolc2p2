@@ -50,6 +50,37 @@ QString Clase3::Interfaz::Analaizar(std::string entrada) {
             <<"stack[(int)P]="<<contador.toStdString()<<";"<<std::endl
             <<"return;}"<<std::endl;
 
+
+
+    QString medcontador = "t"+QString::number(MiniResultado::x++);
+    QString medtecero = "t"+QString::number(MiniResultado::x++);
+     QString medteuno = "t"+QString::number(MiniResultado::x++);
+     QString medLcero = "L"+QString::number(MiniResultado::L++);
+     QString medLuno = "L"+QString::number(MiniResultado::L++);
+    std::cout<<"void mediana() {\n"<<std::endl
+            <<medcontador.toStdString()<<" = 0;"<<std::endl
+            <<medtecero.toStdString()<<" = stack[(int)P];"<<std::endl
+            <<medteuno.toStdString()<<" = heap[(int)"<<medtecero.toStdString()<<"];"<<std::endl
+            <<medLcero.toStdString()<<":"<<std::endl
+            <<"if ("<<medteuno.toStdString()<<"==-1) goto "<<medLuno.toStdString()<<";"<<std::endl
+            //<<contador.toStdString()<<" = "<<contador.toStdString()<<" +"<<teuno.toStdString()<<";"<<std::endl
+            <<medcontador.toStdString()<<" = "<<medcontador.toStdString()<<" +1;"<<std::endl
+            <<medtecero.toStdString()<<" = (int)"<<medtecero.toStdString()<<" + 1;"<<std::endl
+            <<medteuno.toStdString()<<" = heap[(int)"<<medtecero.toStdString()<<"];"<<std::endl
+            <<"goto "<< medLcero.toStdString()<<";"<<std::endl
+            <<medLuno.toStdString()<<":"<<std::endl
+           <<medcontador.toStdString()<<" = "<<medcontador.toStdString()<<" / 2;"<<std::endl
+             <<medtecero.toStdString()<<" = stack[(int)P];"<<std::endl
+            <<medcontador.toStdString()<<" = "<<medcontador.toStdString()<<" + "<<medtecero.toStdString()<<";"<<std::endl
+              <<medteuno.toStdString()<<" = heap[(int)"<<medcontador.toStdString()<<"];"<<std::endl
+            <<"stack[(int)P]="<<medteuno.toStdString()<<";"<<std::endl
+            <<"return;}"<<std::endl;
+
+
+
+
+
+
     QString mcontador = "t"+QString::number(MiniResultado::x++);
     QString mcontadorsuma = "t"+QString::number(MiniResultado::x++);
     QString mtecero = "t"+QString::number(MiniResultado::x++);

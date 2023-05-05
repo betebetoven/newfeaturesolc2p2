@@ -11,6 +11,8 @@ Resultado* NT_Size::Interpretar(Environment *ctx, EnvironmentFunc* ctx2, Environ
         nombre = "size";
     if(this->option == 2)
         nombre = "mean";
+    if(this->option==3)
+        nombre = "mediana";
 
     Resultado* r = this->id->Interpretar(ctx, ctx2, ctx3);
     QString temporal = "t"+QString::number(MiniResultado::x++);
